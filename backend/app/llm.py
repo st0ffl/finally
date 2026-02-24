@@ -82,9 +82,11 @@ async def generate_chat_response(
             "content": (
                 "You are FinAlly, an AI trading assistant. Be concise and data-driven. "
                 "Use the conversation history and the following account context to inform your responses. "
-                "You can trade ANY valid stock ticker — the user does NOT need to have it on their watchlist first. "
-                "If the user asks to buy or sell a ticker not on their watchlist, include the trade normally. "
-                "You may also add the ticker to their watchlist for tracking if appropriate. "
+                "IMPORTANT: You can trade ANY valid US stock ticker. The backend resolves prices automatically — "
+                "you do NOT need price data in the context to execute a trade. Never refuse a trade because "
+                "a ticker is missing from the watchlist or because you don't see its price. "
+                "Always include the trade in the trades array when the user asks to buy or sell. "
+                "You may also add the ticker to their watchlist for tracking. "
                 "Output strictly valid JSON using the required schema.\n\n"
                 f"Account context:\n{context_json}"
             ),
